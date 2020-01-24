@@ -1,0 +1,43 @@
+olb.collection:
+  path: '/admin/content/olb'
+  defaults:
+    _controller: '\Drupal\be\Controller\OrderLineBundleableController::addPage'
+    _title: 'OLB add page'
+  requirements:
+    _permission: 'administer site configuration'
+
+olb.add_page:
+  path: '/olb/add'
+  defaults:
+    _controller: '\Drupal\be\Controller\OrderLineBundleableController::addPage'
+    _title: 'OLB add page'
+  requirements:
+    _permission: 'administer site configuration'
+
+olb.add:
+  path: '/olb/add/{olb_type}'
+  defaults:
+    _controller: '\Drupal\be\Controller\OrderLineBundleableController::add'
+    _title: 'OLB add entity'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    parameters:
+      olb_type:
+        with_config_overrides: TRUE
+
+olb.type_add:
+  path: '/admin/structure/olb_type/add'
+  defaults:
+    _entity_form: 'olb_type.add'
+    _title: 'Add OLB type'
+  requirements:
+    _permission: 'administer content types'
+
+entity.olb_type.collection:
+  path: '/admin/structure/olb_type'
+  defaults:
+    _entity_list: 'olb_type'
+    _title: 'OLB type'
+  requirements:
+    _permission: 'administer content types'

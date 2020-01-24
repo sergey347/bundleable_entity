@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Bundleable Entity module file.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_theme().
+ */
+function be_theme($existing, $type, $theme, $path) {
+  return [
+    'be_add_list' => [
+      'variables' => ['content' => NULL],
+      'path' => "$path/templates",
+      'template' => 'be-add-list',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for list of available Bundleable Entity type template.
+ *
+ * Default template: be-add-list.html.twig.
+ */
+function template_preprocess_be_add_list(&$variables) {
+  $variables['types'] = [];
+
+  if (!empty($variables['content'])) {
+    foreach ($variables['content'] as $type) {
+      $type_id = $type->id();
+      $url = new Url('olb.add', ['olb_type' => $type_id]);
+      $add_link = \Drupal::service('link_generator')->generate($type->label(), $url);
+
+      $variables['types'][$type_id] = [
+        'type' => $type_id,
+        'add_link' => $add_link,
+      ];
+    }
+  }
+}

@@ -1,0 +1,11 @@
+entity.olb_type.collection:
+  title: 'Bundleable Entity Types'
+  parent: system.admin_structure
+  description: 'Create and manage fields, forms, and display settings for your Bundleable Entity Types.'
+  route_name: entity.olb_type.collection
+
+olb.collection:
+  title: 'Bundleable Entity Items'
+  description: 'Bundleable Entities.'
+  parent: commerce.admin_commerce
+  route_name: olb.collection
